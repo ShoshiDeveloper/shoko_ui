@@ -1,0 +1,21 @@
+name: shoko_ui
+description: "This package is a UI-Kit from the ShokoTeam, which aims to accelerate the development of both your and our projects"
+version: 1.0.0
+homepage: https://pub.dev/packages/shoko_pack
+repository: https://github.com/ShoshiDeveloper/shoko_pack
+
+environment:
+  sdk: '>=3.2.2 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  gap: ^3.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
