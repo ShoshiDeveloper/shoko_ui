@@ -7,10 +7,8 @@ enum SShadow {
 }
 
 extension SShadowsExtension on SShadow {
-  List<BoxShadow> get() {
-    switch (name) {
-      case "medium":
-        return const [
+  List<BoxShadow> get listBoxShadow => switch (name) {
+      "medium" => const [
           BoxShadow(
             blurRadius: 6,
             color: Color.fromRGBO(15, 23, 42, 0.1),
@@ -23,9 +21,8 @@ extension SShadowsExtension on SShadow {
             offset: Offset(0,2),
             spreadRadius: -2
           )
-        ];
-      case "large":
-        return const [
+        ],
+      "large" =>const [
           BoxShadow(
             blurRadius: 6,
             color: Color.fromRGBO(15, 23, 42, 0.05),
@@ -38,10 +35,8 @@ extension SShadowsExtension on SShadow {
             offset: Offset(0,10),
             spreadRadius: -3
           )
-        ];
-      case "small":
-      default:
-        return const [
+        ],
+      "small" => const [
           BoxShadow(
             blurRadius: 3,
             color: Color.fromRGBO(15, 23, 42, 0.08),
@@ -54,7 +49,7 @@ extension SShadowsExtension on SShadow {
             offset: Offset(0,1),
             spreadRadius: -1
           )
-        ];
-    }
-  }
+        ],
+        _ => []
+  };
 }

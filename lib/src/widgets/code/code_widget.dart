@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
-import 'package:shoko_ui/src/theme/styles/radius.dart';
 
 enum ShokoUICodeBorderType {externalOutline, underSymbolsBorder}
 
 ///Example: pin, friend code, share code and etc.
+@Deprecated('Will be reworked in v1.1.0')
 class ShokoCodeTextField extends StatefulWidget {
 
   final int symbolsCount;
@@ -120,7 +120,7 @@ class _ShokoCodeTextFieldState extends State<ShokoCodeTextField> {
     return AnimatedContainer(
       duration: const Duration(seconds: 1),
       decoration: widget.borderType == ShokoUICodeBorderType.externalOutline ? BoxDecoration(
-        borderRadius: widget.radius?.get() ?? SRadii.medium.get(),
+        borderRadius: widget.radius?.borderRadius ?? SRadii.medium.borderRadius,
         border: Border.all(
           color: widget.enableColor ?? Colors.black
         )
@@ -191,7 +191,7 @@ class _CodeWidgetSymbol extends StatelessWidget {
   BoxDecoration? _getDecoration() {
     if (fillBackground) {
       return BoxDecoration(
-        borderRadius: radius?.get() ?? SRadii.medium.get(),
+        borderRadius: radius?.borderRadius ?? SRadii.medium.borderRadius,
         color: color
       );
     }

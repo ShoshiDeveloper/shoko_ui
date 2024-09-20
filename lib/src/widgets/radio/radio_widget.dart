@@ -4,7 +4,7 @@ import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 
 enum ShokoRadioChildPosition {left, right}
 
-class ShokoRadio extends StatelessWidget {
+class SRadio extends StatelessWidget {
   final bool value;
   final Function(bool newValue)? onChange;
 
@@ -19,7 +19,7 @@ class ShokoRadio extends StatelessWidget {
   final ShokoRadioChildPosition childPosition;
   final MainAxisAlignment mainAxisAlignment;
 
-  const ShokoRadio({super.key,
+  const SRadio({super.key,
     required this.value, this.onChange,
     this.child,
     this.size = 32, this.inactiveColor, this.markColor, this.activeColor, this.radius = SRadii.medium,
@@ -43,7 +43,7 @@ class ShokoRadio extends StatelessWidget {
             width: size,
             decoration: BoxDecoration(
               color: value ? (activeColor ?? context.theme.radioTheme.activeColor) : null,
-              borderRadius: (radius?.get() ?? context.theme.buttonTheme.radius.get()),
+              borderRadius: (radius?.borderRadius ?? context.theme.buttonTheme.radius?.borderRadius),
               border: !value ? Border.all(
                 color: inactiveColor ?? context.theme.radioTheme.inactiveColor,
                 width: 2

@@ -14,20 +14,12 @@ enum SRadii {
 }
 
 extension SRadiiExtension on SRadii {
-  BorderRadius get() {
-    switch (name) {
-      case "small":
-        return BorderRadius.circular(8);
-      case "medium":
-        return BorderRadius.circular(12);
-      case "mediumPlus":
-        return BorderRadius.circular(16);
-      case "large":
-        return BorderRadius.circular(20);
-      case "largePlus":
-        return BorderRadius.circular(24);
-      default:
-        return BorderRadius.circular(12);
-    }
-  }
+  BorderRadius get borderRadius => switch (name) {
+      "small" => BorderRadius.circular(8),
+      "medium" => BorderRadius.circular(12),
+      "mediumPlus" => BorderRadius.circular(16),
+      "large" => BorderRadius.circular(20),
+      "largePlus" => BorderRadius.circular(24),
+      _ => BorderRadius.circular(12),
+  };
 }

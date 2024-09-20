@@ -114,7 +114,7 @@ class _STextFieldState extends State<STextField> {
             curve: Curves.ease,
             decoration: BoxDecoration(
               color: widget.isOutline ?? theme.isOutline ? null : getWidgetColor(),
-              borderRadius: SRadii.mediumPlus.get(),
+              borderRadius: SRadii.mediumPlus.borderRadius,
               border: widget.isOutline ?? theme.isOutline ? Border.all(
                 width: 1,
                 color: getWidgetColor()
