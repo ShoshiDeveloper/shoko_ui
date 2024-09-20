@@ -43,7 +43,7 @@ class SRadio extends StatelessWidget {
             width: size,
             decoration: BoxDecoration(
               color: value ? (activeColor ?? context.theme.radioTheme.activeColor) : null,
-              borderRadius: (radius?.borderRadius ?? context.theme.buttonTheme.radius?.borderRadius),
+              borderRadius: (radius?.borderRadius ?? context.theme.buttonTheme.radius.borderRadius),
               border: !value ? Border.all(
                 color: inactiveColor ?? context.theme.radioTheme.inactiveColor,
                 width: 2

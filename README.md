@@ -1,4 +1,19 @@
-Coming soon..
+<a href="https://shokoteam.ru">
+  <h1 align="center">
+    <picture>
+      <img width="400" alt="ShokoUI" src="assets/logo.png">
+    </picture>
+  </h1>
+</a>
+
+## Widgets
+- Button [x]
+- Code [x]
+- Radio [x]
+- Switch [x]
+- Textfield [x]
+- Badge [ ]
+- SScaffold []
 
 <!-- ## Plans
     Create gap -->
