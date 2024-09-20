@@ -3,7 +3,7 @@ import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 import 'package:shoko_ui/src/widgets/switch/switch_theme.dart';
 
 class SSwitch extends StatefulWidget {
-  final Function(bool newValue)? onChange;
+  final Function(bool newValue)? onChanged;
   
   final bool value;
   final double width;
@@ -22,7 +22,7 @@ class SSwitch extends StatefulWidget {
   final double? insidePadding;
 
   const SSwitch({super.key,
-    required this.value, this.onChange, this.width = 64,
+    required this.value, this.onChanged, this.width = 64,
     this.thumbColor, this.backgroundColor, this.outlineColor, this.inactiveThumbColor, this.inactiveBackgroundColor, this.inactiveOutlineColor,
     this.enableOutline, this.insidePadding,
     this.thumbShadow
@@ -59,7 +59,7 @@ class _SSwitchState extends State<SSwitch> {
       hoverColor: Colors.transparent,
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
-      onTap: () => widget.onChange?.call(!value),
+      onTap: () => widget.onChanged?.call(!value),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
         curve: Curves.easeInSine,
