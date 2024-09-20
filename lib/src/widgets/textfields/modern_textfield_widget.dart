@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
-class ShokoModernTextField extends StatefulWidget {
+class STextField extends StatefulWidget {
   
   ///Be auto-dispose when widget disposed
   final TextEditingController controller;
   final TextStyle? style;
 
-  final Function(String value)? onChange;
+  final Function(String value)? onChanged;
+  ///The method that should return a ```bool``` indicating the presence of an error
   final bool Function(String value)? validator;
 
   final bool isEnabled;
@@ -37,9 +38,9 @@ class ShokoModernTextField extends StatefulWidget {
 
   final List<TextInputFormatter>? inputFormatters;
   
-  const ShokoModernTextField({super.key,
+  const STextField({super.key,
     required this.controller, this.style, this.isOutline,
-    this.onChange, this.validator,
+    this.onChanged, this.validator,
     this.isEnabled = true,
     this.isError = false, this.errorText, this.errorTextStyle,
     this.label, this.labelTextStyle,
@@ -52,43 +53,25 @@ class ShokoModernTextField extends StatefulWidget {
   });
 
   @override
-  State<ShokoModernTextField> createState() => _ShokoModernTextFieldState();
+  State<STextField> createState() => _STextFieldState();
 }
 
-class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
+class _STextFieldState extends State<STextField> {
 
   final FocusNode focusNode = FocusNode();
-  bool isError = false;
+  late bool isError = widget.isError;
   String value = '';
 
   @override
-  void initState() {
-    isError = widget.isError;
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant ShokoModernTextField oldWidget) {
-    setState(() {
-      isError = widget.isError;
-    });
+  void didUpdateWidget(covariant STextField oldWidget) {
+    setState(() => isError = widget.isError);
     super.didUpdateWidget(oldWidget);
   }
 
-  @override
-  void dispose() {
-    // widget.controller.dispose();
-    // focusNode.dispose();
-    super.dispose();
-  }
-
   submit(String value) {
-    widget.onChange?.call(value);
+    widget.onChanged?.call(value);
     
-    bool validatorResult = true;
-    if (widget.validator != null) {
-      validatorResult = widget.validator!(value);
-    }
+    bool validatorResult = widget.validator?.call(value) ?? true;
 
     setState(() {
       isError = !validatorResult;
@@ -174,7 +157,7 @@ class _ShokoModernTextFieldState extends State<ShokoModernTextField> {
             )
           )
         ),
-        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle ?? TextStyle(color: widget.errorColor ?? theme.errorColor),))
+        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle))
       ]
     );
   }

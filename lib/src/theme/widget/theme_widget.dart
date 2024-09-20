@@ -6,7 +6,7 @@ import 'package:shoko_ui/src/theme/styles/content_styles.dart';
 import 'package:shoko_ui/src/widgets/button/button_theme.dart';
 import 'package:shoko_ui/src/widgets/radio/shoko_theme_radio.dart';
 import 'package:shoko_ui/src/widgets/switch/switch_theme.dart';
-import 'package:shoko_ui/src/widgets/textfields/shoko_theme_textfield.dart';
+import 'package:shoko_ui/src/widgets/textfields/textfield_theme.dart';
 
 ///Widget for set ui theme
 ///Preferably, the entire application should be wrapped so that the theme is accessible from anywhere

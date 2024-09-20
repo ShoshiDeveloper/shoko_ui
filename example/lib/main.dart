@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             MyWidget(),
             Switch(value: state, onChanged: onChanged),
-            SSwitch(value: state, width: 50, insidePadding: 4, onChange: onChanged),
+            SSwitch(value: state, width: 50, insidePadding: 4, onChanged: onChanged),
           ],
         )
       )
