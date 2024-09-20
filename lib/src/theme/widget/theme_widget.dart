@@ -3,6 +3,7 @@ import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 import 'package:shoko_ui/src/theme/general_themes/background_theme.dart';
 import 'package:shoko_ui/src/theme/general_themes/content_theme.dart';
 import 'package:shoko_ui/src/theme/styles/content_styles.dart';
+import 'package:shoko_ui/src/widgets/badge/badge_theme.dart';
 import 'package:shoko_ui/src/widgets/button/button_theme.dart';
 import 'package:shoko_ui/src/widgets/radio/shoko_theme_radio.dart';
 import 'package:shoko_ui/src/widgets/switch/switch_theme.dart';
@@ -36,6 +37,7 @@ class SThemeWidget extends StatelessWidget {
 ///A class that stores global theme settings
 class STheme {
   //Styles of widgets
+  final SBadgeTheme badgeTheme;
   final SButtonTheme buttonTheme;
   final SRadioTheme radioTheme;
   final STextFieldTheme textFieldTheme;
@@ -51,10 +53,12 @@ class STheme {
   // final ShokoMBSTheme mbsTheme;
 
   const STheme({
-    this.buttonTheme = const SButtonTheme(),
+    this.badgeTheme = const SBadgeTheme(),
+    this.buttonTheme = const SButtonTheme.basic(),
     this.radioTheme = const SRadioTheme(),
     this.textFieldTheme = const STextFieldTheme(),
     this.switchTheme = const SSwitchTheme(),
+    
     this.backgroundTheme = const SBackgroundTheme.basic(),
     this.contentTheme = const SContentTheme.basic(),
     

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 class SContentTheme {
   final Color primary;
+  final Color invertPrimary;
   final Color secondary;
   final Color tertiary;
 
@@ -10,8 +11,11 @@ class SContentTheme {
   final Color success;
   final Color alert;
 
+
+
   const SContentTheme({
     required this.primary,
+    required this.invertPrimary,
     required this.secondary,
     required this.tertiary,
 
@@ -24,6 +28,7 @@ class SContentTheme {
   @protected
   const SContentTheme.basic({
     this.primary = Colors.black,
+    this.invertPrimary = Colors.white,
     this.secondary = Colors.grey,
     this.tertiary = Colors.black26 ,
 

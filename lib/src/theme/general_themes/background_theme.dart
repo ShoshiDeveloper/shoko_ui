@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SBackgroundTheme {
   final Color primary;
@@ -28,7 +27,7 @@ class SBackgroundTheme {
 
   @protected
   const SBackgroundTheme.basic({
-    this.primary = Colors.white,
+    this.primary = Colors.black,
     this.secondary = Colors.grey,
     this.tertiary = Colors.black87 ,
 

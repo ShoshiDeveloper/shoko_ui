@@ -88,7 +88,7 @@ class _SButtonState extends State<SButton> {
     final color = widget.color ?? theme.color;
 
     return BoxDecoration(
-      borderRadius: (widget.radius?.borderRadius ?? theme.radius.borderRadius),
+      borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
       color: !widget.isOutline ? (isEnabled ? color : color.withOpacity(0.25)) : null,
       border: Border.all(
         strokeAlign: BorderSide.strokeAlignOutside,
@@ -98,7 +98,7 @@ class _SButtonState extends State<SButton> {
     );
   }
   BoxDecoration _contentDecoration(SButtonTheme theme) => BoxDecoration(
-    borderRadius: (widget.radius?.borderRadius ?? theme.radius.borderRadius),
+    borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
     boxShadow: (widget.shadow?.listBoxShadow ?? theme.shadow?.listBoxShadow),
     border: widget.isOutline ? Border.all(
       width: 1,

@@ -7,6 +7,7 @@ export 'package:gap/gap.dart';
 export 'src/controllers/code_field_controller.dart';
 
 
+export 'src/widgets/badge/badge.dart';
 export 'src/widgets/button/button.dart';
 export 'src/widgets/switch/switch.dart';
 export 'src/widgets/textfields/textfield.dart';
