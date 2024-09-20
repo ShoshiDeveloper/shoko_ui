@@ -1,20 +1,20 @@
 <a href="https://shokoteam.ru">
   <h1 align="center">
     <picture>
-      <source width="400" media="(prefers-color-scheme: dark)" srcset="assets/dark_logo.png">
-      <img width="400" alt="ShokoUI" src="assets/logo.png">
+      <source width="720" media="(prefers-color-scheme: dark)" srcset="assets/light_ui_logo.png">
+      <img width="720" alt="ShokoUI" src="assets/dark_ui_logo.png">
     </picture>
   </h1>
 </a>
 
 ## Widgets
 - [x] Button 
-- Code [x]
-- Radio [x]
-- Switch [x]
-- Textfield [x]
-- Badge [ ]
-- SScaffold []
+- [x] Code
+- [x] Radio
+- [x] Switch
+- [x] Textfield
+- [] Badge
+- [] SScaffold
 
 <!-- ## Plans
     Create gap -->
