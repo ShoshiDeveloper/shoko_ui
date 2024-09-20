@@ -1,13 +1,14 @@
 <a href="https://shokoteam.ru">
   <h1 align="center">
     <picture>
+      <source width="400" media="(prefers-color-scheme: dark)" srcset="assets/dark_logo.png">
       <img width="400" alt="ShokoUI" src="assets/logo.png">
     </picture>
   </h1>
 </a>
 
 ## Widgets
-- Button [x]
+- [x] Button 
 - Code [x]
 - Radio [x]
 - Switch [x]
