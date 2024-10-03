@@ -69,10 +69,11 @@ class _SButtonState extends State<SButton> {
         duration: const Duration(milliseconds: 250),
         decoration: _animatedDecoration(theme),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 32),
           decoration: _contentDecoration(theme),
           child: Container(
             child: widget.expanded ? Row(
+              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: widget.childPosition.alignment,
               children: [
                 widget.child,
