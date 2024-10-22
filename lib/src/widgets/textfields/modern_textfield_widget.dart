@@ -8,6 +8,7 @@ class STextField extends StatefulWidget {
   final TextEditingController controller;
   final TextStyle? style;
 
+  final Function(String value)? onSubmitted;
   final Function(String value)? onChanged;
   ///The method that should return a ```bool``` indicating the presence of an error
   final bool Function(String value)? validator;
@@ -40,7 +41,7 @@ class STextField extends StatefulWidget {
   
   const STextField({super.key,
     required this.controller, this.style, this.isOutline,
-    this.onChanged, this.validator,
+    this.onSubmitted, this.onChanged, this.validator,
     this.isEnabled = true,
     this.isError = false, this.errorText, this.errorTextStyle,
     this.label, this.labelTextStyle,
@@ -68,9 +69,7 @@ class _STextFieldState extends State<STextField> {
     super.didUpdateWidget(oldWidget);
   }
 
-  submit(String value) {
-    widget.onChanged?.call(value);
-    
+  validate(String value) {
     bool validatorResult = widget.validator?.call(value) ?? true;
 
     setState(() {
@@ -106,8 +105,8 @@ class _STextFieldState extends State<STextField> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Focus(
-          onFocusChange: (value) {
-            !value ? submit(this.value) : setState(() {});
+          onFocusChange: (focusState) {
+            !focusState ? validate(value) : setState(() {});
           },
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
@@ -124,9 +123,16 @@ class _STextFieldState extends State<STextField> {
               children: [
                 Expanded(
                   child: TextField(
-                    onSubmitted: submit,
+                    onSubmitted: (value) {
+                      widget.onSubmitted?.call(value);
+                      validate(value);
+                    },
                     onTapOutside: (event) => focusNode.unfocus(),
-                    onChanged: (value) => this.value = value,
+                    onChanged: (value) {
+                      this.value = value;
+                      widget.onChanged?.call(value);
+                      validate(value);
+                    },
                     controller: widget.controller,
                     focusNode: focusNode,
                     cursorColor: theme.cursorColor,
