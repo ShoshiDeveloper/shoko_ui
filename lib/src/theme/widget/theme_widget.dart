@@ -61,8 +61,8 @@ class STheme {
     
     this.backgroundTheme = const SBackgroundTheme.basic(),
     this.contentTheme = const SContentTheme.basic(),
-    
     this.contentStyles = const SContentStyles()
+    
     // this.dialogTheme = const ShokoDialogTheme(),
     // this.mbsTheme = const ShokoMBSTheme()
   });

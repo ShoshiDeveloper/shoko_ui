@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/shoko_ui.dart';
+import 'package:shoko_ui/src/widgets/content/content_widget.dart';
 
 enum ButtonChildPosition {
   start(MainAxisAlignment.start),
@@ -19,8 +20,7 @@ class SButton extends StatefulWidget {
   final bool isOutline;
   final bool expanded;
 
-  ///We recommend using it for text
-  final Widget child;
+  final ContentWidget child;
 
   final SRadii? radius;
   final SShadow? shadow;

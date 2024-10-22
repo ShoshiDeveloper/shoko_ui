@@ -82,6 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SButton.expanded(
+              onTap: () {},
+              color: context.theme.backgroundTheme.alertLight,
+              child: SButtonTextContent(text: 'some text for me', color: context.theme.contentTheme.alert)
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

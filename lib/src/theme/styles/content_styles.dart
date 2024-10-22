@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SContentStyles {
+  const SContentStyles({
+    this.fontFamily = ''
+  });
   final String fontFamily;
 
   TextStyle heading1({FontWeight? weight, Color? color}) => TextStyle(fontFamily: fontFamily, fontSize: 24, fontWeight: weight, height: 1.2, color: color);
@@ -13,9 +16,4 @@ class SContentStyles {
   TextStyle body2({FontWeight? weight, Color? color}) => TextStyle(fontFamily: fontFamily, fontSize: 14, fontWeight: weight, height: 1.4, color: color);
   
   TextStyle caption({FontWeight? weight, Color? color}) => TextStyle(fontFamily: fontFamily, fontSize: 12, fontWeight: weight, height: 1.4, color: color);
-
-
-  const SContentStyles({
-    this.fontFamily = ''
-  });
 }
