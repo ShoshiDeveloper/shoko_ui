@@ -17,6 +17,7 @@ class SButtonTextContent extends StatelessWidget implements ContentWidget {
 class SButtonIconContent extends StatelessWidget implements ContentWidget {
   const SButtonIconContent({super.key, required this.icon});
   
+  ///Recommended size is 21 px
   final Widget icon;
 
   @override

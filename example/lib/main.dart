@@ -83,7 +83,18 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SButton.expanded(
-              onTap: () {},
+              onTap: () {
+                showMBS(context, base: MBSBase(
+                  content: Text('Вы кто такие? Идите нахуй!', style: context.theme.contentStyles.body1()),
+                  bottom: Row(
+                    children: [
+                      SButton(onTap: () => Navigator.pop(context) ,child: SButtonIconContent(icon: Icon(Icons.ac_unit, size: 21, color: Colors.white,))),
+                      const Gap(8),
+                      Expanded(child: SButton.expanded(onTap: () => Navigator.pop(context) ,child: SButtonTextContent(text: 'Сам иди нахуй')))
+                    ],
+                  ),
+                ));
+              },
               color: context.theme.backgroundTheme.alertLight,
               child: SButtonTextContent(text: 'some text for me', color: context.theme.contentTheme.alert)
             ),

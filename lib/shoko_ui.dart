@@ -12,3 +12,4 @@ export 'src/widgets/button/button.dart';
 export 'src/widgets/switch/switch.dart';
 export 'src/widgets/textfields/textfield.dart';
 export 'src/theme/theme.dart';
+export 'src/modals/mbs/mbs.dart';
