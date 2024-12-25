@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:shoko_ui/src/theme/widget/theme_widget.dart';
 
-
 extension SThemeExtension on BuildContext {
   @protected
   static STheme _currentTheme = const STheme();
@@ -13,7 +12,7 @@ extension SThemeExtension on BuildContext {
 
   @protected
   void initTheme(STheme theme, {required Function() needRebuild}) {
-    if(!_isThemeInitialized) {
+    if (!_isThemeInitialized) {
       _currentTheme = theme;
       needRebuild = needRebuild;
 
@@ -25,6 +24,5 @@ extension SThemeExtension on BuildContext {
     _currentTheme = theme;
 
     needRebuild?.call();
-    
   }
 }

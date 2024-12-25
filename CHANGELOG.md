@@ -1,3 +1,7 @@
+## 1.1.0
+- Updated the content in the buttons
+- Fixed the colors of the STextField
+
 ## 1.0.0
 I've rethought the package approach.
 Now it's not just a UI Kit with the export of ShokoBases and ShokoTheme, now it's a UI library that will contain all this in one package.

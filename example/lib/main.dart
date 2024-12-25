@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       home: SThemeWidget(
           shokoUITheme: STheme(
               badgeTheme: SBadgeTheme(alertColor: Colors.red, textAlertColor: Colors.white),
-              contentTheme: SContentTheme(
+              contentTheme: SContentColors(
                 primary: Colors.black,
                 invertPrimary: Colors.white,
                 secondary: Color.fromRGBO(155, 155, 155, 1),
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
                 success: Colors.green,
                 alert: Colors.red,
               ),
-              backgroundTheme: SBackgroundTheme(
+              backgroundTheme: SBackgroundColors(
                   primary: Colors.white,
                   secondary: Color.fromRGBO(250, 250, 250, 1),
                   tertiary: Color.fromRGBO(235, 237, 240, 1),
@@ -68,37 +68,11 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SButton.expanded(
-                onTap: () {
-                  showMBS(context,
-                      base: MBSBase(
-                        content: Text('Вы кто такие? Идите нахуй!', style: context.theme.contentStyles.body1()),
-                        bottom: Row(
-                          children: [
-                            SButton(
-                                onTap: () => Navigator.pop(context),
-                                child: const SButtonContent.icon(
-                                    icon: Icon(
-                                  Icons.ac_unit,
-                                  size: 21,
-                                  color: Colors.white,
-                                ))),
-                            const Gap(8),
-                            Expanded(child: SButton.expanded(onTap: () => Navigator.pop(context), child: const SButtonContent.text(text: 'Сам иди нахуй')))
-                          ],
-                        ),
-                      ));
-                },
-                color: context.theme.backgroundTheme.alertLight,
-                child: SButtonContent.text(text: 'some text for me', color: context.theme.contentTheme.alert)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SBadge(text: 'Flutter', color: context.theme.backgroundTheme.brand, textColor: context.theme.contentTheme.invertPrimary),
-                SBadge(text: 'Flutter', state: SBadgeState.alert),
-                SBadge(text: 'Flutter', state: SBadgeState.inactive),
-              ],
-            )
+            STextField(
+              controller: TextEditingController(),
+              isError: true,
+              label: 'asdfasdf',
+            ),
           ],
         )));
   }

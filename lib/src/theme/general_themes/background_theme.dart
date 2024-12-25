@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SBackgroundTheme {
+class SBackgroundColors {
   final Color primary;
   final Color secondary;
   final Color tertiary;
@@ -12,11 +12,10 @@ class SBackgroundTheme {
   final Color alert;
   final Color alertLight;
 
-  const SBackgroundTheme({
+  const SBackgroundColors({
     required this.primary,
     required this.secondary,
     required this.tertiary,
-
     required this.brand,
     required this.brandLight,
     required this.success,
@@ -26,11 +25,10 @@ class SBackgroundTheme {
   });
 
   @protected
-  const SBackgroundTheme.basic({
+  const SBackgroundColors.basic({
     this.primary = Colors.black,
     this.secondary = Colors.grey,
-    this.tertiary = Colors.black87 ,
-
+    this.tertiary = Colors.black87,
     this.brand = Colors.red,
     this.brandLight = Colors.red,
     this.success = Colors.green,

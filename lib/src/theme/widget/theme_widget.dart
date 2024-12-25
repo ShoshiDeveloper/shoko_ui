@@ -17,12 +17,11 @@ class SThemeWidget extends StatelessWidget {
   const SThemeWidget({super.key, required this.shokoUITheme, required this.child});
 
   void treeRebuild() {
-    
     void rebuild(Element el) {
       el.markNeedsBuild();
       el.visitChildren(rebuild);
     }
-    
+
     (this as Element).markNeedsBuild();
     (this as Element).visitChildren(rebuild);
   }
@@ -43,34 +42,25 @@ class STheme {
   final STextFieldTheme textFieldTheme;
   final SSwitchTheme switchTheme;
 
-  final SBackgroundTheme backgroundTheme;
-  final SContentTheme contentTheme;
+  final SBackgroundColors backgroundTheme;
+  final SContentColors contentTheme;
 
   final SContentStyles contentStyles;
-
 
   // final ShokoDialogTheme dialogTheme;
   // final ShokoMBSTheme mbsTheme;
 
-  const STheme({
-    this.badgeTheme = const SBadgeTheme(),
-    this.buttonTheme = const SButtonTheme.basic(),
-    this.radioTheme = const SRadioTheme(),
-    this.textFieldTheme = const STextFieldTheme(),
-    this.switchTheme = const SSwitchTheme(),
-    
-    this.backgroundTheme = const SBackgroundTheme.basic(),
-    this.contentTheme = const SContentTheme.basic(),
-    this.contentStyles = const SContentStyles()
-    
-    // this.dialogTheme = const ShokoDialogTheme(),
-    // this.mbsTheme = const ShokoMBSTheme()
-  });
+  const STheme(
+      {this.badgeTheme = const SBadgeTheme(),
+      this.buttonTheme = const SButtonTheme.basic(),
+      this.radioTheme = const SRadioTheme(),
+      this.textFieldTheme = const STextFieldTheme(),
+      this.switchTheme = const SSwitchTheme(),
+      this.backgroundTheme = const SBackgroundColors.basic(),
+      this.contentTheme = const SContentColors.basic(),
+      this.contentStyles = const SContentStyles()
+
+      // this.dialogTheme = const ShokoDialogTheme(),
+      // this.mbsTheme = const ShokoMBSTheme()
+      });
 }
-
-
-
-
-
-
-
