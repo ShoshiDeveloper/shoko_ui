@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/shoko_ui.dart';
-import 'package:shoko_ui/src/widgets/content/content_widget.dart';
 
 enum ButtonChildPosition {
   start(MainAxisAlignment.start),
   center(MainAxisAlignment.center),
   end(MainAxisAlignment.end);
+
   const ButtonChildPosition(this.alignment);
   final MainAxisAlignment alignment;
 }
@@ -20,26 +20,37 @@ class SButton extends StatefulWidget {
   final bool isOutline;
   final bool expanded;
 
-  final ContentWidget child;
+  final SButtonContent child;
 
   final SRadii? radius;
   final SShadow? shadow;
   final ButtonChildPosition childPosition;
 
-  const SButton({super.key,
-    this.onTap, this.onDoubleTap, this.onLongPress,
-    this.color, this.isOutline = false,
-    required this.child,
-    this.radius, this.shadow, this.childPosition = ButtonChildPosition.center
-  }) : expanded = false;
+  const SButton(
+      {super.key,
+      this.onTap,
+      this.onDoubleTap,
+      this.onLongPress,
+      this.color,
+      this.isOutline = false,
+      required this.child,
+      this.radius,
+      this.shadow,
+      this.childPosition = ButtonChildPosition.center})
+      : expanded = false;
 
-  
-  const SButton.expanded({super.key,
-    this.onTap, this.onDoubleTap, this.onLongPress,
-    this.color, this.isOutline = false,
-    required this.child,
-    this.radius, this.shadow, this.childPosition = ButtonChildPosition.center
-  }) : expanded = true;
+  const SButton.expanded(
+      {super.key,
+      this.onTap,
+      this.onDoubleTap,
+      this.onLongPress,
+      this.color,
+      this.isOutline = false,
+      required this.child,
+      this.radius,
+      this.shadow,
+      this.childPosition = ButtonChildPosition.center})
+      : expanded = true;
 
   @override
   State<SButton> createState() => _SButtonState();
@@ -58,7 +69,7 @@ class _SButtonState extends State<SButton> {
   @override
   Widget build(BuildContext context) {
     final theme = context.theme.buttonTheme;
-    
+
     return GestureDetector(
       onTap: widget.onTap,
       onDoubleTap: widget.onDoubleTap,
@@ -72,38 +83,33 @@ class _SButtonState extends State<SButton> {
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 32),
           decoration: _contentDecoration(theme),
           child: Container(
-            child: widget.expanded ? Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: widget.childPosition.alignment,
-              children: [
-                widget.child,
-              ],
-            ) : widget.child
+            child: widget.expanded
+                ? Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: widget.childPosition.alignment,
+                    children: [
+                      widget.child,
+                    ],
+                  )
+                : widget.child,
           ),
         ),
-      )
+      ),
     );
   }
 
-  BoxDecoration _animatedDecoration (SButtonTheme theme) {
+  BoxDecoration _animatedDecoration(SButtonTheme theme) {
     final color = widget.color ?? theme.color;
 
     return BoxDecoration(
-      borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
-      color: !widget.isOutline ? (isEnabled ? color : color.withOpacity(0.25)) : null,
-      border: Border.all(
-        strokeAlign: BorderSide.strokeAlignOutside,
-        color: isFocused ? color.withOpacity(0.25) : Colors.transparent,
-        width: 5
-      )
-    );
+        borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
+        color: !widget.isOutline ? (isEnabled ? color : color.withOpacity(0.25)) : null,
+        border: Border.all(strokeAlign: BorderSide.strokeAlignOutside, color: isFocused ? color.withOpacity(0.25) : Colors.transparent, width: 5));
   }
+
   BoxDecoration _contentDecoration(SButtonTheme theme) => BoxDecoration(
-    borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
-    boxShadow: (widget.shadow?.listBoxShadow ?? theme.shadow?.listBoxShadow),
-    border: widget.isOutline ? Border.all(
-      width: 1,
-      color: widget.color ?? theme.color
-    ) : null,
-  );
+        borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
+        boxShadow: (widget.shadow?.listBoxShadow ?? theme.shadow?.listBoxShadow),
+        border: widget.isOutline ? Border.all(width: 1, color: widget.color ?? theme.color) : null,
+      );
 }
