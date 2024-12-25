@@ -4,7 +4,7 @@ import 'package:shoko_ui/src/widgets/content/content_widget.dart';
 
 sealed class SButtonContent extends ContentWidget {
   factory SButtonContent.text(String text, {TextStyle? style, Color? color}) => SButtonTextContent(text: '', style: style, color: color);
-  factory SButtonContent.icon(Widget icon) => SButtonIconContent(icon: icon);
+  factory SButtonContent.icon(Widget child) => SButtonChildContent(child: child);
 }
 
 @protected
@@ -22,13 +22,13 @@ class SButtonTextContent extends StatelessWidget implements SButtonContent {
 }
 
 @protected
-class SButtonIconContent extends StatelessWidget implements SButtonContent {
-  const SButtonIconContent({super.key, required this.icon});
+class SButtonChildContent extends StatelessWidget implements SButtonContent {
+  const SButtonChildContent({super.key, required this.child});
 
-  final Widget icon;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return icon;
+    return child;
   }
 }
