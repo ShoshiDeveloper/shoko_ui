@@ -3,7 +3,7 @@ import 'package:shoko_ui/shoko_ui.dart';
 import 'package:shoko_ui/src/widgets/content/content_widget.dart';
 
 sealed class SButtonContent extends ContentWidget {
-  factory SButtonContent.text(String text, {TextStyle? style, Color? color}) => SButtonTextContent(text: '', style: style, color: color);
+  factory SButtonContent.text(String text, {TextStyle? style, Color? color}) => SButtonTextContent(text: text, style: style, color: color);
   factory SButtonContent.icon(Widget child) => SButtonChildContent(child: child);
 }
 
