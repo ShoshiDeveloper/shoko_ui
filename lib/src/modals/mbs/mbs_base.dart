@@ -10,7 +10,7 @@ class MBSBase extends StatelessWidget {
   final bool labelOnCenter;
   final bool expandContent;
 
-  ///Не забудь включить scrolling в showModalBottomSheet
+  ///Don't forget to turn it on scrolling in showModalBottomSheet / showMBS
   final bool kIsFullHeight;
 
   final MainAxisAlignment? mainAxisAlignment;
@@ -32,9 +32,9 @@ class MBSBase extends StatelessWidget {
     this.expandContent = false,
     this.bottom,
     this.mainAxisAlignment,
-    this.padding, this.margin
-  })  : userAccept = null;
-
+    this.padding,
+    this.margin,
+  }) : userAccept = null;
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +57,13 @@ class MBSBase extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 5.5),
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(50)
+                  borderRadius: BorderRadius.circular(50),
                 ),
-              )
+              ),
             ),
-            if (label != null) ... [
-              const Gap(16),
-              _buildLabelAtCenter(context)
-
-            ],
-            _buildContent(),
-            if (bottom != null) ... [
+            if (label != null) ...[const Gap(16), _buildLabelAtPosition(context)],
+            _buildExpandedContent(),
+            if (bottom != null) ...[
               const Gap(16),
               bottom!,
             ],
@@ -78,10 +74,13 @@ class MBSBase extends StatelessWidget {
     );
   }
 
-  Widget _buildLabelAtCenter(BuildContext context) {
-    return labelOnCenter ? Center(child: Text(label!, style: context.theme.contentStyles.title1(weight: FontWeight.w500))) : Text(label!, style: context.theme.contentStyles.title1(weight: FontWeight.w500));
+  Widget _buildLabelAtPosition(BuildContext context) {
+    return labelOnCenter
+        ? Center(child: Text(label!, style: context.theme.contentStyles.title1(weight: FontWeight.w500)))
+        : Text(label!, style: context.theme.contentStyles.title1(weight: FontWeight.w500));
   }
-  Widget _buildContent() {
+
+  Widget _buildExpandedContent() {
     return expandContent ? Expanded(child: content!) : content!;
   }
 }
