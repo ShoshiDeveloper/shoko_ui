@@ -61,7 +61,7 @@ class MBSBase extends StatelessWidget {
                 ),
               ),
             ),
-            if (label != null) ...[const Gap(16), _buildLabelAtPosition(context)],
+            if (label != null) ...[_buildLabelAtPosition(context), const Gap(16)],
             _buildExpandedContent(),
             if (bottom != null) ...[
               const Gap(16),
