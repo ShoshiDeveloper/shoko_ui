@@ -153,7 +153,7 @@ packages:
       path: "C:\\projects\\dart\\packages\\shoko_ui"
       relative: false
     source: path
-    version: "1.0.3"
+    version: "1.1.5"
   sky_engine:
     dependency: transitive
     description: flutter
