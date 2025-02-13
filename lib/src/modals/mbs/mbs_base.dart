@@ -44,7 +44,7 @@ class MBSBase extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         padding: padding ?? const EdgeInsets.symmetric(horizontal: 16),
         margin: margin ?? EdgeInsets.only(left: 0, right: 0, bottom: MediaQuery.of(context).viewInsets.bottom, top: 0),
-        decoration: BoxDecoration(color: context.theme.backgroundTheme.primary, borderRadius: const BorderRadius.all(Radius.circular(16))),
+        decoration: BoxDecoration(color: context.theme.colors.background.primary, borderRadius: const BorderRadius.all(Radius.circular(16))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: kIsFullHeight ? MainAxisSize.max : MainAxisSize.min,

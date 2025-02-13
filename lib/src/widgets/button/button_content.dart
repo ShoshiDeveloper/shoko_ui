@@ -17,7 +17,7 @@ class SButtonTextContent extends StatelessWidget implements SButtonContent {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text, style: style ?? context.theme.contentStyles.body1(weight: FontWeight.w500, color: color ?? context.theme.contentTheme.invertPrimary));
+    return Text(text, style: style ?? context.theme.contentStyles.body1(weight: FontWeight.w500, color: color ?? context.theme.colors.content.invertPrimary));
   }
 }
 

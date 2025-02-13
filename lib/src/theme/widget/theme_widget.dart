@@ -42,25 +42,35 @@ class STheme {
   final STextFieldTheme textFieldTheme;
   final SSwitchTheme switchTheme;
 
+  @Deprecated('Use colors.background. Will be removed in 1.2.0')
   final SBackgroundColors backgroundTheme;
+  @Deprecated('Use colors.content. Will be removed in 1.2.0')
   final SContentColors contentTheme;
+  final SThemeColors colors;
 
   final SContentStyles contentStyles;
 
   // final ShokoDialogTheme dialogTheme;
   // final ShokoMBSTheme mbsTheme;
 
-  const STheme(
-      {this.badgeTheme = const SBadgeTheme(),
-      this.buttonTheme = const SButtonTheme.basic(),
-      this.radioTheme = const SRadioTheme(),
-      this.textFieldTheme = const STextFieldTheme(),
-      this.switchTheme = const SSwitchTheme(),
-      this.backgroundTheme = const SBackgroundColors.basic(),
-      this.contentTheme = const SContentColors.basic(),
-      this.contentStyles = const SContentStyles()
+  const STheme({
+    this.badgeTheme = const SBadgeTheme(),
+    this.buttonTheme = const SButtonTheme.basic(),
+    this.radioTheme = const SRadioTheme(),
+    this.textFieldTheme = const STextFieldTheme(),
+    this.switchTheme = const SSwitchTheme(),
+    this.contentStyles = const SContentStyles(),
+    @Deprecated('Use colors.background. Will be removed in 1.2.0') this.backgroundTheme = const SBackgroundColors.basic(),
+    @Deprecated('Use colors.content. Will be removed in 1.2.0') this.contentTheme = const SContentColors.basic(),
+    this.colors = const SThemeColors(),
 
-      // this.dialogTheme = const ShokoDialogTheme(),
-      // this.mbsTheme = const ShokoMBSTheme()
-      });
+    // this.dialogTheme = const ShokoDialogTheme(),
+    // this.mbsTheme = const ShokoMBSTheme()
+  });
+}
+
+class SThemeColors {
+  const SThemeColors({this.background = const SBackgroundColors.basic(), this.content = const SContentColors.basic()});
+  final SBackgroundColors background;
+  final SContentColors content;
 }

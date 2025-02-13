@@ -8,13 +8,14 @@ class SScaffold extends StatelessWidget {
   final Widget body;
   final AppBar? appBar;
 
-  final bool _scrollable;
   final Color? backgroundColor;
+
+  final bool _scrollable;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor ?? context.theme.backgroundTheme.primary,
+      backgroundColor: backgroundColor ?? context.theme.colors.background.primary,
       appBar: appBar,
       body: _scrollable ? SingleChildScrollView(child: body) : body,
     );

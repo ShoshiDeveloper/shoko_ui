@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shoko_ui/src/theme/styles/radius.dart';
 import 'package:shoko_ui/src/theme/extensions/context_theme_extension.dart';
 
-enum ShokoRadioChildPosition {left, right}
+enum ShokoRadioChildPosition { left, right }
 
 class SRadio extends StatelessWidget {
   final bool value;
@@ -19,12 +19,18 @@ class SRadio extends StatelessWidget {
   final ShokoRadioChildPosition childPosition;
   final MainAxisAlignment mainAxisAlignment;
 
-  const SRadio({super.key,
-    required this.value, this.onChange,
-    this.child,
-    this.size = 32, this.inactiveColor, this.markColor, this.activeColor, this.radius = SRadii.medium,
-    this.childPosition = ShokoRadioChildPosition.right, this.mainAxisAlignment = MainAxisAlignment.start
-  });
+  const SRadio(
+      {super.key,
+      required this.value,
+      this.onChange,
+      this.child,
+      this.size = 32,
+      this.inactiveColor,
+      this.markColor,
+      this.activeColor,
+      this.radius = SRadii.medium,
+      this.childPosition = ShokoRadioChildPosition.right,
+      this.mainAxisAlignment = MainAxisAlignment.start});
 
   @override
   Widget build(BuildContext context) {
@@ -32,30 +38,22 @@ class SRadio extends StatelessWidget {
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (childPosition == ShokoRadioChildPosition.left) ... [
-          if(child != null) child!,
+        if (childPosition == ShokoRadioChildPosition.left) ...[
+          if (child != null) child!,
           const SizedBox(width: 8),
         ],
         GestureDetector(
-          onTap: () => onChange?.call(!value),
-          child: Container(
-            height: size,
-            width: size,
-            decoration: BoxDecoration(
-              color: value ? (activeColor ?? context.theme.radioTheme.activeColor) : null,
-              borderRadius: (radius?.borderRadius ?? context.theme.buttonTheme.radius?.borderRadius),
-              border: !value ? Border.all(
-                color: inactiveColor ?? context.theme.radioTheme.inactiveColor,
-                width: 2
-              ) : null
-            ),
-            child: value ? Icon(Icons.check_rounded, size: size - 4, color: markColor ?? context.theme.radioTheme.markColor) : null,
-          )
-        ),
-        if (childPosition == ShokoRadioChildPosition.right) ... [
-          const SizedBox(width: 8),
-          if(child != null) child!
-        ]
+            onTap: () => onChange?.call(!value),
+            child: Container(
+              height: size,
+              width: size,
+              decoration: BoxDecoration(
+                  color: value ? (activeColor ?? context.theme.radioTheme.activeColor) : null,
+                  borderRadius: (radius?.borderRadius ?? context.theme.radioTheme.radius.borderRadius),
+                  border: !value ? Border.all(color: inactiveColor ?? context.theme.radioTheme.inactiveColor, width: 2) : null),
+              child: value ? Icon(Icons.check_rounded, size: size - 4, color: markColor ?? context.theme.radioTheme.markColor) : null,
+            )),
+        if (childPosition == ShokoRadioChildPosition.right) ...[const SizedBox(width: 8), if (child != null) child!]
       ],
     );
   }

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
-enum SBadgeState {active, alert, inactive}
+enum SBadgeState { active, alert, inactive }
 
 class SBadge extends StatelessWidget {
-  const SBadge({super.key,
-    required this.text, this.state = SBadgeState.active,
-    this.color, this.alertColor, this.inactiveColor,
-    this.textColor
-  });
+  const SBadge({super.key, required this.text, this.state = SBadgeState.active, this.color, this.alertColor, this.inactiveColor, this.textColor});
 
   final String text;
   final SBadgeState state;
@@ -25,16 +21,20 @@ class SBadge extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: SRadii.mediumPlus.borderRadius,
         color: switch (state) {
-          SBadgeState.active => color ?? context.theme.badgeTheme.color ?? context.theme.backgroundTheme.primary,
-          SBadgeState.alert => alertColor ?? context.theme.badgeTheme.alertColor ?? context.theme.backgroundTheme.alertLight,
-          SBadgeState.inactive => inactiveColor ?? context.theme.badgeTheme.inactiveColor ?? context.theme.backgroundTheme.tertiary,
+          SBadgeState.active => color ?? context.theme.badgeTheme.color ?? context.theme.colors.background.primary,
+          SBadgeState.alert => alertColor ?? context.theme.badgeTheme.alertColor ?? context.theme.colors.background.alertLight,
+          SBadgeState.inactive => inactiveColor ?? context.theme.badgeTheme.inactiveColor ?? context.theme.colors.background.tertiary,
         },
       ),
-      child: Text(text, style: context.theme.contentStyles.body2(weight: FontWeight.w500, color: textColor ?? switch (state) {
-          SBadgeState.active => color ?? context.theme.badgeTheme.textColor ?? context.theme.contentTheme.primary,
-          SBadgeState.alert => alertColor ?? context.theme.badgeTheme.textAlertColor ?? context.theme.contentTheme.alert,
-          SBadgeState.inactive => inactiveColor ?? context.theme.badgeTheme.textInactiveColor ?? context.theme.contentTheme.secondary,        
-      })),
+      child: Text(text,
+          style: context.theme.contentStyles.body2(
+              weight: FontWeight.w500,
+              color: textColor ??
+                  switch (state) {
+                    SBadgeState.active => color ?? context.theme.badgeTheme.textColor ?? context.theme.colors.content.primary,
+                    SBadgeState.alert => alertColor ?? context.theme.badgeTheme.textAlertColor ?? context.theme.colors.content.alert,
+                    SBadgeState.inactive => inactiveColor ?? context.theme.badgeTheme.textInactiveColor ?? context.theme.colors.content.secondary,
+                  })),
     );
   }
 }
