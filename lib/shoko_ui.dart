@@ -14,3 +14,4 @@ export 'src/widgets/badge/badge.dart';
 export 'src/widgets/button/button.dart';
 export 'src/widgets/switch/switch.dart';
 export 'src/widgets/textfields/textfield.dart';
+export 'src/widgets/appbar/appbar.dart';
