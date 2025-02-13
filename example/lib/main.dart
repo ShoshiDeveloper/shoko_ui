@@ -18,8 +18,9 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       home: SThemeWidget(
           shokoUITheme: STheme(
-              badgeTheme: SBadgeTheme(alertColor: Colors.red, textAlertColor: Colors.white),
-              contentTheme: SContentColors(
+            badgeTheme: SBadgeTheme(alertColor: Colors.red, textAlertColor: Colors.white),
+            colors: SThemeColors(
+              content: SContentColors(
                 primary: Colors.black,
                 invertPrimary: Colors.white,
                 secondary: Color.fromRGBO(155, 155, 155, 1),
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
                 success: Colors.green,
                 alert: Colors.red,
               ),
-              backgroundTheme: SBackgroundColors(
+              background: SBackgroundColors(
                   primary: Colors.white,
                   secondary: Color.fromRGBO(250, 250, 250, 1),
                   tertiary: Color.fromRGBO(235, 237, 240, 1),
@@ -37,7 +38,9 @@ class MyApp extends StatelessWidget {
                   success: Colors.green,
                   successLight: Color.fromRGBO(229, 255, 237, 1),
                   alert: Colors.red,
-                  alertLight: Color.fromRGBO(255, 233, 232, 1))),
+                  alertLight: Color.fromRGBO(255, 233, 232, 1)),
+            ),
+          ),
           child: MyHomePage()),
     );
   }
@@ -63,9 +66,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: context.theme.backgroundTheme.secondary,
-        body: Center(
-            child: Column(
+      appBar: SAppBar(
+          // title: 'aboba',
+          ),
+      backgroundColor: context.theme.colors.background.secondary,
+      body: Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             STextField(
@@ -74,6 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'asdfasdf',
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
