@@ -74,18 +74,34 @@ class _STextFieldState extends State<STextField> {
   late bool isError = widget.isError;
   String value = '';
 
+  STextFieldTheme get theme => context.theme.textFieldTheme;
+  bool get isEnabled => widget.isEnabled;
+
   @override
   void didUpdateWidget(covariant STextField oldWidget) {
     setState(() => isError = widget.isError);
     super.didUpdateWidget(oldWidget);
   }
 
-  validate(String value) {
+  bool validate(String value) {
     bool validatorResult = widget.validator?.call(value) ?? true;
 
     setState(() {
       isError = !validatorResult;
     });
+
+    return validatorResult;
+  }
+
+  void onSubmitted(value) {
+    final validated = validate(value);
+    if (validated) widget.onSubmitted?.call(value);
+  }
+
+  void onChanged(value) {
+    this.value = value;
+    widget.onChanged?.call(value);
+    validate(value);
   }
 
   Color getBorderColor() {
@@ -120,62 +136,56 @@ class _STextFieldState extends State<STextField> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.textFieldTheme;
-
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-      Focus(
-          onFocusChange: (focusState) {
-            !focusState ? validate(value) : setState(() {});
-          },
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Focus(
+          onFocusChange: (focusState) => focusState ? validate(value) : setState(() {}),
           child: AnimatedContainer(
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.ease,
-              decoration: BoxDecoration(
-                  color: widget.isOutline ?? theme.isOutline ? null : getBorderColor(),
-                  borderRadius: SRadii.mediumPlus.borderRadius,
-                  border: widget.isOutline ?? theme.isOutline ? Border.all(width: 1, color: getBorderColor()) : null),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      onSubmitted: (value) {
-                        widget.onSubmitted?.call(value);
-                        validate(value);
-                      },
-                      onTapOutside: (event) => focusNode.unfocus(),
-                      onChanged: (value) {
-                        this.value = value;
-                        widget.onChanged?.call(value);
-                        validate(value);
-                      },
-                      controller: widget.controller,
-                      focusNode: focusNode,
-                      cursorColor: theme.cursorColor,
-                      readOnly: !widget.isEnabled,
-                      autocorrect: true,
-                      enableSuggestions: true,
-                      obscureText: widget.obscureText,
-                      inputFormatters: widget.inputFormatters,
-                      keyboardType: widget.keyboardType,
-                      maxLength: widget.maxSymbols,
-                      maxLines: widget.maxLines ?? 1,
-                      decoration: InputDecoration(
-                        enabled: widget.isEnabled,
-                        counterText: '',
-                        contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-                        label: (widget.label != null) ? Text(widget.label!) : null,
-                        labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: getLabelColor),
-                        border: InputBorder.none,
-                      ),
-                      style: (widget.style ?? theme.style)?.copyWith(
-                        color: !widget.isEnabled ? (widget.disableColor ?? theme.disableColor) : null,
-                      ),
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.ease,
+            decoration: BoxDecoration(
+              color: widget.isOutline ?? theme.isOutline ? null : getBorderColor(),
+              borderRadius: SRadii.mediumPlus.borderRadius,
+              border: widget.isOutline ?? theme.isOutline ? Border.all(width: 1, color: getBorderColor()) : null,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    onSubmitted: onSubmitted,
+                    onTapOutside: (event) => focusNode.unfocus(),
+                    onChanged: onChanged,
+                    controller: widget.controller,
+                    focusNode: focusNode,
+                    cursorColor: theme.cursorColor,
+                    readOnly: !widget.isEnabled,
+                    autocorrect: true,
+                    enableSuggestions: true,
+                    obscureText: widget.obscureText,
+                    inputFormatters: widget.inputFormatters,
+                    keyboardType: widget.keyboardType,
+                    maxLength: widget.maxSymbols,
+                    maxLines: widget.maxLines ?? 1,
+                    decoration: InputDecoration(
+                      enabled: widget.isEnabled,
+                      counterText: '',
+                      contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                      label: (widget.label != null) ? Text(widget.label!) : null,
+                      labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: getLabelColor),
+                      border: InputBorder.none,
                     ),
+                    style: (widget.style ?? theme.style)?.copyWith(color: !isEnabled ? (widget.disableColor ?? theme.disableColor) : null),
                   ),
-                  if (widget.suffix != null) ...[widget.suffix!, const Gap(20)],
-                ],
-              ))),
-      if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle))
-    ]);
+                ),
+                if (widget.suffix != null) ...[widget.suffix!, const Gap(20)],
+              ],
+            ),
+          ),
+        ),
+        if (isError && widget.errorText != null) (Text(widget.errorText!, style: widget.errorTextStyle ?? theme.errorTextStyle))
+      ],
+    );
   }
 }

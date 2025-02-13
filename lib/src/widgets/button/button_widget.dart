@@ -58,30 +58,25 @@ class SButton extends StatefulWidget {
 
 class _SButtonState extends State<SButton> {
   bool isFocused = false;
-  late bool isEnabled = widget.onTap != null || widget.onDoubleTap != null || widget.onLongPress != null;
 
-  @override
-  void didUpdateWidget(covariant SButton oldWidget) {
-    isEnabled = widget.onTap != null || widget.onDoubleTap != null || widget.onLongPress != null;
-    super.didUpdateWidget(oldWidget);
-  }
+  bool get isEnabled => widget.onTap != null || widget.onDoubleTap != null || widget.onLongPress != null;
+
+  SButtonTheme get theme => context.theme.buttonTheme;
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme.buttonTheme;
-
     return GestureDetector(
       onTap: widget.onTap,
       onDoubleTap: widget.onDoubleTap,
+      onLongPress: widget.onLongPress,
       onLongPressStart: (_) => setState(() => isFocused = (true && isEnabled)),
       onLongPressEnd: (_) => setState(() => isFocused = false),
-      onLongPress: widget.onLongPress,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
-        decoration: _animatedDecoration(theme),
+        decoration: _animatedDecoration(),
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 32),
-          decoration: _contentDecoration(theme),
+          decoration: _contentDecoration(),
           child: Container(
             child: widget.expanded
                 ? Row(
@@ -98,7 +93,7 @@ class _SButtonState extends State<SButton> {
     );
   }
 
-  BoxDecoration _animatedDecoration(SButtonTheme theme) {
+  BoxDecoration _animatedDecoration() {
     final color = widget.color ?? theme.color;
 
     return BoxDecoration(
@@ -107,7 +102,7 @@ class _SButtonState extends State<SButton> {
         border: Border.all(strokeAlign: BorderSide.strokeAlignOutside, color: isFocused ? color.withOpacity(0.25) : Colors.transparent, width: 5));
   }
 
-  BoxDecoration _contentDecoration(SButtonTheme theme) => BoxDecoration(
+  BoxDecoration _contentDecoration() => BoxDecoration(
         borderRadius: (widget.radius?.borderRadius ?? theme.radius?.borderRadius),
         boxShadow: (widget.shadow?.listBoxShadow ?? theme.shadow?.listBoxShadow),
         border: widget.isOutline ? Border.all(strokeAlign: BorderSide.strokeAlignOutside, width: 1, color: widget.color ?? theme.color) : null,
