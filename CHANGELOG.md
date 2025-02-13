@@ -1,4 +1,8 @@
-## 1.1.4-1.1.5
+## 1.2.0
+**New**:
+- Added SAppBar.
+- backgroundTheme and contentTheme are now deprecated. They have been moved to SThemeColors.
+## 1.1.4-1.1.6
 - fixes
 ## 1.1.2
 - Updated the content in the buttons

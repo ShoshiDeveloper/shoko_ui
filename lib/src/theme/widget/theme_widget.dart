@@ -42,9 +42,9 @@ class STheme {
   final STextFieldTheme textFieldTheme;
   final SSwitchTheme switchTheme;
 
-  @Deprecated('Use colors.background. Will be removed in 1.2.0')
+  @Deprecated('Use colors.background. Will be removed in 1.3.0')
   final SBackgroundColors backgroundTheme;
-  @Deprecated('Use colors.content. Will be removed in 1.2.0')
+  @Deprecated('Use colors.content. Will be removed in 1.3.0')
   final SContentColors contentTheme;
   final SThemeColors colors;
 
@@ -60,8 +60,8 @@ class STheme {
     this.textFieldTheme = const STextFieldTheme(),
     this.switchTheme = const SSwitchTheme(),
     this.contentStyles = const SContentStyles(),
-    @Deprecated('Use colors.background. Will be removed in 1.2.0') this.backgroundTheme = const SBackgroundColors.basic(),
-    @Deprecated('Use colors.content. Will be removed in 1.2.0') this.contentTheme = const SContentColors.basic(),
+    @Deprecated('Use colors.background. Will be removed in 1.3.0') this.backgroundTheme = const SBackgroundColors.basic(),
+    @Deprecated('Use colors.content. Will be removed in 1.3.0') this.contentTheme = const SContentColors.basic(),
     this.colors = const SThemeColors(),
 
     // this.dialogTheme = const ShokoDialogTheme(),
