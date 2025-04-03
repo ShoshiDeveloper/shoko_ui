@@ -1,3 +1,9 @@
+## 1.2.1
+**New**
+- STextField now has a showSuffixWhenFocus parameter
+- STextField now has a hintText parameter
+- STextField now has a minLines parameter, and maxLines can be null
+- STextField now has a label on top if you have multiple lines
 ## 1.2.0
 **New**:
 - Added SAppBar.

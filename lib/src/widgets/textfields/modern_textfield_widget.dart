@@ -3,6 +3,36 @@ import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
 class STextField extends StatefulWidget {
+  const STextField({
+    super.key,
+    required this.controller,
+    this.style,
+    this.isOutline,
+    this.onSubmitted,
+    this.onChanged,
+    this.validator,
+    this.isEnabled = true,
+    this.isError = false,
+    this.errorText,
+    this.errorTextStyle,
+    this.label,
+    this.labelTextStyle,
+    this.enableColor,
+    this.disableColor,
+    this.focusColor,
+    this.errorColor,
+    this.keyboardType,
+    this.maxSymbols,
+    this.minSymbols,
+    this.obscureText = false,
+    this.suffix,
+    this.inputFormatters,
+    this.minLines,
+    this.maxLines,
+    this.alignLabelWithHint = false,
+    this.showSuffixWhenFocus = false,
+  });
+
   ///Be auto-dispose when widget disposed
   final TextEditingController controller;
   final TextStyle? style;
@@ -16,6 +46,10 @@ class STextField extends StatefulWidget {
   final bool isEnabled;
   final bool obscureText;
   final bool? isOutline;
+  final bool alignLabelWithHint;
+
+  ///If `false`, then always display the suffix, if `true`, then only on focus. Default is false.
+  final bool showSuffixWhenFocus;
 
   final bool isError;
   final String? errorText;
@@ -33,37 +67,12 @@ class STextField extends StatefulWidget {
 
   final int? minSymbols;
   final int? maxSymbols;
+  final int? minLines;
   final int? maxLines;
 
   final Widget? suffix;
 
   final List<TextInputFormatter>? inputFormatters;
-
-  const STextField(
-      {super.key,
-      required this.controller,
-      this.style,
-      this.isOutline,
-      this.onSubmitted,
-      this.onChanged,
-      this.validator,
-      this.isEnabled = true,
-      this.isError = false,
-      this.errorText,
-      this.errorTextStyle,
-      this.label,
-      this.labelTextStyle,
-      this.enableColor,
-      this.disableColor,
-      this.focusColor,
-      this.errorColor,
-      this.keyboardType,
-      this.maxSymbols,
-      this.minSymbols,
-      this.obscureText = false,
-      this.suffix,
-      this.inputFormatters,
-      this.maxLines});
 
   @override
   State<STextField> createState() => _STextFieldState();
@@ -143,6 +152,7 @@ class _STextFieldState extends State<STextField> {
         Focus(
           onFocusChange: (focusState) => focusState ? validate(value) : setState(() {}),
           child: AnimatedContainer(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             duration: const Duration(milliseconds: 500),
             curve: Curves.ease,
             decoration: BoxDecoration(
@@ -151,6 +161,7 @@ class _STextFieldState extends State<STextField> {
               border: widget.isOutline ?? theme.isOutline ? Border.all(width: 1, color: getBorderColor()) : null,
             ),
             child: Row(
+              spacing: 16,
               children: [
                 Expanded(
                   child: TextField(
@@ -167,11 +178,15 @@ class _STextFieldState extends State<STextField> {
                     inputFormatters: widget.inputFormatters,
                     keyboardType: widget.keyboardType,
                     maxLength: widget.maxSymbols,
-                    maxLines: widget.maxLines ?? 1,
+                    minLines: widget.minLines,
+                    maxLines: widget.maxLines,
                     decoration: InputDecoration(
                       enabled: widget.isEnabled,
+                      hintText: 'hint',
+                      hintStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: theme.disableColor),
                       counterText: '',
-                      contentPadding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+                      alignLabelWithHint: widget.alignLabelWithHint,
+                      contentPadding: const EdgeInsets.only(top: 8, bottom: 8),
                       label: (widget.label != null) ? Text(widget.label!) : null,
                       labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: getLabelColor),
                       border: InputBorder.none,
@@ -179,7 +194,8 @@ class _STextFieldState extends State<STextField> {
                     style: (widget.style ?? theme.style)?.copyWith(color: !isEnabled ? (widget.disableColor ?? theme.disableColor) : null),
                   ),
                 ),
-                if (widget.suffix != null) ...[widget.suffix!, const Gap(20)],
+                if (widget.suffix != null)
+                  if (!widget.showSuffixWhenFocus) ...[widget.suffix!] else if (focusNode.hasFocus) ...[widget.suffix!],
               ],
             ),
           ),
