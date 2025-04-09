@@ -1,3 +1,5 @@
+## 1.2.2
+- fixes
 ## 1.2.1
 **New**
 - STextField now has a showSuffixWhenFocus parameter

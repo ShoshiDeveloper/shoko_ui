@@ -3,35 +3,35 @@ import 'package:flutter/services.dart';
 import 'package:shoko_ui/shoko_ui.dart';
 
 class STextField extends StatefulWidget {
-  const STextField({
-    super.key,
-    required this.controller,
-    this.style,
-    this.isOutline,
-    this.onSubmitted,
-    this.onChanged,
-    this.validator,
-    this.isEnabled = true,
-    this.isError = false,
-    this.errorText,
-    this.errorTextStyle,
-    this.label,
-    this.labelTextStyle,
-    this.enableColor,
-    this.disableColor,
-    this.focusColor,
-    this.errorColor,
-    this.keyboardType,
-    this.maxSymbols,
-    this.minSymbols,
-    this.obscureText = false,
-    this.suffix,
-    this.inputFormatters,
-    this.minLines,
-    this.maxLines,
-    this.alignLabelWithHint = false,
-    this.showSuffixWhenFocus = false,
-  });
+  const STextField(
+      {super.key,
+      required this.controller,
+      this.style,
+      this.isOutline,
+      this.onSubmitted,
+      this.onChanged,
+      this.validator,
+      this.isEnabled = true,
+      this.isError = false,
+      this.errorText,
+      this.errorTextStyle,
+      this.label,
+      this.labelTextStyle,
+      this.enableColor,
+      this.disableColor,
+      this.focusColor,
+      this.errorColor,
+      this.keyboardType,
+      this.maxSymbols,
+      this.minSymbols,
+      this.obscureText = false,
+      this.suffix,
+      this.inputFormatters,
+      this.minLines,
+      this.maxLines = 1,
+      this.alignLabelWithHint = false,
+      this.showSuffixWhenFocus = false,
+      this.hint});
 
   ///Be auto-dispose when widget disposed
   final TextEditingController controller;
@@ -56,6 +56,7 @@ class STextField extends StatefulWidget {
   final TextStyle? errorTextStyle;
 
   final String? label;
+  final String? hint;
   final TextStyle? labelTextStyle;
 
   final Color? enableColor;
@@ -182,13 +183,13 @@ class _STextFieldState extends State<STextField> {
                     maxLines: widget.maxLines,
                     decoration: InputDecoration(
                       enabled: widget.isEnabled,
-                      hintText: 'hint',
+                      hintText: widget.hint,
                       hintStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: theme.disableColor),
                       counterText: '',
                       alignLabelWithHint: widget.alignLabelWithHint,
                       contentPadding: const EdgeInsets.only(top: 8, bottom: 8),
                       label: (widget.label != null) ? Text(widget.label!) : null,
-                      labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle ?? const TextStyle()).copyWith(color: getLabelColor),
+                      labelStyle: (widget.labelTextStyle ?? theme.labelTextStyle), //.copyWith(color: getLabelColor),
                       border: InputBorder.none,
                     ),
                     style: (widget.style ?? theme.style)?.copyWith(color: !isEnabled ? (widget.disableColor ?? theme.disableColor) : null),
